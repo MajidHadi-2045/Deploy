@@ -5,19 +5,21 @@ const STATIC_ASSETS = [
   '/Deploy/favicon.png',
   '/Deploy/images/icon-192x192.png',
   '/Deploy/images/icon-512x512.png',
-  '/Deploy/images/logo.png',
-  '/Deploy/styles.css',
-  '/Deploy/scripts/index.js'
+  '/Deploy/images/logo.png'
 ];
 
+// Install event: Cache static assets
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(STATIC_ASSETS);
+    }).catch(err => {
+      console.error('❌ Gagal cache saat install:', err);
     })
   );
 });
 
+// Activate event: Clean up old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames =>
@@ -30,18 +32,21 @@ self.addEventListener('activate', event => {
   );
 });
 
+// Fetch event: Serve from cache or fetch from network
 self.addEventListener('fetch', event => {
-  const requestUrl = event.request.url;
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request)
-        .catch(() => caches.match('/'));
+      return response || fetch(event.request).catch(() => {
+        // Fallback untuk offline
+        return caches.match('/Deploy/index.html');
+      });
     })
   );
 });
 
+// Push notification event
 self.addEventListener('push', function (event) {
   let data = {};
 
@@ -61,9 +66,10 @@ self.addEventListener('push', function (event) {
   );
 });
 
+// Notification click event
 self.addEventListener('notificationclick', function (event) {
   event.notification.close();
   event.waitUntil(
-    clients.openWindow('/')
+    clients.openWindow('/Deploy/')
   );
 });
