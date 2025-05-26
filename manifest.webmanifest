@@ -2,7 +2,7 @@
   "name": "Dicoding Story App",
   "short_name": "StoryApp",
   "id": "/#/",
-  "start_url": "/#/",
+  "start_url": "./",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -10,7 +10,7 @@
   "description": "Aplikasi cerita pengguna Dicoding",
   "icons": [
     {
-      "src": "/Deploy/images/icon-192x192.png",
+      "src": "./images/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
