@@ -10,7 +10,7 @@
   "description": "Aplikasi cerita pengguna Dicoding",
   "icons": [
     {
-      "src": "./images/icon-192x192.png",
+      "src": "/Deploy/images/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
