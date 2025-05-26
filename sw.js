@@ -1,14 +1,13 @@
 const CACHE_NAME = 'story-app-cache-v1';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.webmanifest',
-  '/favicon.png',
-  '/images/icon-192x192.png',
-  '/images/icon-512x512.png',
-  '/images/logo.png',
-  '/styles.css',
-  '/scripts/index.js',
+  'index.html',
+  'manifest.webmanifest',
+  'favicon.png',
+  'images/icon-192x192.png',
+  'images/icon-512x512.png',
+  'images/logo.png',
+  'styles.css',
+  'scripts/index.js',
 ];
 
 self.addEventListener('install', event => {
